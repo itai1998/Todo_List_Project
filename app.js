@@ -1,9 +1,13 @@
 //Selectors
-const todoInput = document.querySelector(".todo-input");
+const todoInput = document.querySelector(".todo-input"); // 
 const todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 
-//Event Listeners
+
+
+//Event Listeners: addEventListener attach an event handler to a specified element,
+//such as a button or input field. The first paremeter is the action that tragger the
+// function. The second parameter is the function that is being traggered.
 todoButton.addEventListener("click",addTodo);
 todoList.addEventListener('click', deleteCheck);
 
@@ -13,13 +17,13 @@ function addTodo(event){
     //Prevent form from submitting
     event.preventDefault();
     //Todo DIV
-    const todoDiv = document.createElement("div");
-    todoDiv.classList.add("todo");
+    const todoDiv = document.createElement("div");  // Create a new "div" element and save it into variable
+    todoDiv.classList.add("todo");                  // Adds a CSS class "todo" to that variable
     //Create LI
-    const newTodo = document.createElement('li');
-    newTodo.innerText = todoInput.value;
-    newTodo.classList.add('todo-item');
-    todoDiv.appendChild(newTodo);
+    const newTodo = document.createElement('li');  // Create a new "li" element
+    newTodo.innerText = todoInput.value; // Sets the text content to the current value of the todoInput variable  using the innerText property.
+    newTodo.classList.add('todo-item');  // Adds a CSS class
+    todoDiv.appendChild(newTodo);        // Appends the li element as a child to a div (No appendChile will only in mem not display)
     //Check Mark button
     const completedButton = document.createElement('button');
     completedButton.innerHTML = '<i class="fas fa-check"></i>';
