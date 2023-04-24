@@ -1,5 +1,5 @@
 //Selectors
-const todoInput = document.querySelector(".todo-input"); // 
+const todoInput = document.querySelector(".todo-input"); // Search the elements from its CSS
 const todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 
@@ -21,33 +21,33 @@ function addTodo(event){
     todoDiv.classList.add("todo");                  // Adds a CSS class "todo" to that variable
     //Create LI
     const newTodo = document.createElement('li');  // Create a new "li" element
-    newTodo.innerText = todoInput.value; // Sets the text content to the current value of the todoInput variable  using the innerText property.
-    newTodo.classList.add('todo-item');  // Adds a CSS class
-    todoDiv.appendChild(newTodo);        // Appends the li element as a child to a div (No appendChile will only in mem not display)
+    newTodo.innerText = todoInput.value;           // Sets the text content to the current value of the todoInput variable  using the innerText property.
+    newTodo.classList.add('todo-item');            // Adds a CSS class
+    todoDiv.appendChild(newTodo);                  // Appends the li element as a child to a div (No appendChile will only in mem not display)
     //Check Mark button
-    const completedButton = document.createElement('button');
-    completedButton.innerHTML = '<i class="fas fa-check"></i>';
-    completedButton.classList.add("complete-btn");
-    todoDiv.appendChild(completedButton);
+    const completedButton = document.createElement('button');       // Create a new "button" element
+    completedButton.innerHTML = '<i class="fas fa-check"></i>';     // Given an inner HTML of an icon represented by the <i> tag with a class of "fas fa-check" (check mark).
+    completedButton.classList.add("complete-btn");                  // Adds a CSS class
+    todoDiv.appendChild(completedButton);                           // Appends the button element as a child to a div
     //Check trash button
-    const trashButton = document.createElement('button');
-    trashButton.innerHTML = '<i class="fas fa-trash"></i>';
-    trashButton.classList.add("trash-btn");
-    todoDiv.appendChild(trashButton);
+    const trashButton = document.createElement('button');           // Create a new "button" element
+    trashButton.innerHTML = '<i class="fas fa-trash"></i>';         // Given an inner HTML of an icon represented by the <i> tag with a class of "fas fa-trash" (trash mark).
+    trashButton.classList.add("trash-btn");                         // Adds a CSS class
+    todoDiv.appendChild(trashButton);                               // Appends the button element as a child to a div
     //Append to list
-    todoList.appendChild(todoDiv);    // add the style into the list
+    todoList.appendChild(todoDiv);                                  // add the style into the list
     // Clear Todo INPUT VALUE
     todoInput.value =" ";
 }
 
 function deleteCheck(e){
-    const item = e.target;
+    const item = e.target;                                      // Refer to the HTML element that triggered the event
     //DELETE TODO
     if(item.classList[0] === "trash-btn"){
-        const todo = item.parentElement;
+        const todo = item.parentElement;                        //  Returns the parent element(the container)
         //Animation
         todo.classList.add("fall");
-        todo.addEventListener('transitionend', function(){
+        todo.addEventListener('transitionend', function(){      // The transitionend event is fired when a CSS transition or animation ends on an element. 
             todo.remove();
         })
      
@@ -56,7 +56,7 @@ function deleteCheck(e){
     //CHECK MARK
     if(item.classList[0] === "complete-btn"){
         const todo = item.parentElement;
-        todo.classList.toggle("completed");
+        todo.classList.toggle("completed");                      // classList.toggle() method is used to toggle a specific class 
 
     }
 }
