@@ -2,6 +2,7 @@
 const todoInput = document.querySelector(".todo-input"); // Search the elements from its CSS
 const todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
+const filterOption = document.querySelector('.filter-todo');
 
 
 
@@ -10,6 +11,7 @@ const todoList = document.querySelector(".todo-list");
 // function. The second parameter is the function that is being traggered.
 todoButton.addEventListener("click",addTodo);
 todoList.addEventListener('click', deleteCheck);
+filterOption.addEventListener("click", filterTodo);
 
 
 //Functions
@@ -59,4 +61,29 @@ function deleteCheck(e){
         todo.classList.toggle("completed");                      // classList.toggle() method is used to toggle a specific class 
 
     }
+}
+
+function filterTodo(e){
+    const todos = todoList.childNodes;
+    todos.forEach(function(todo){
+        switch(e.target.value){
+            case "all":
+                todo.style.display = "flex";
+                break;
+            case "completed":
+                if(todo.classList.contains("completed")){
+                    todo.style.display="flex";
+                }else{
+                    todo.style.display = "none";
+                }
+                break;
+            case "umcompleted":
+                if(!todo.classList.contains("completed")){
+                    todo.style.display="flex";
+                }else{
+                    todo.style.display = "none";
+                }   
+                break;
+        }
+    });
 }
