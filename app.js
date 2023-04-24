@@ -64,9 +64,9 @@ function deleteCheck(e){
 }
 
 function filterTodo(e){
-    const todos = todoList.childNodes;
-    todos.forEach(function(todo){
-        switch(e.target.value){
+    const todos = todoList.childNodes;                  // Get all the childNodes of todoList (ui in this case)
+    todos.forEach(function(todo){                       // For-each loop to loop all of the childNodes (todo is the local parameter for perfoming the actions of the function inside the for-each loop)
+        switch(e.target.value){                         // Use switch to check the value. Performing the different actions according to the result
             case "all":
                 todo.style.display = "flex";
                 break;
