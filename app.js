@@ -8,7 +8,8 @@ const filterOption = document.querySelector('.filter-todo');
 
 //Event Listeners: addEventListener attach an event handler to a specified element,
 //such as a button or input field. The first paremeter is the action that tragger the
-// function. The second parameter is the function that is being traggered.
+//function. The second parameter is the function that is being traggered.
+document.addEventListener('DOMContentLoaded',getTodos);
 todoButton.addEventListener("click",addTodo);
 todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener("click", filterTodo);
@@ -26,6 +27,8 @@ function addTodo(event){
     newTodo.innerText = todoInput.value;           // Sets the text content to the current value of the todoInput variable  using the innerText property.
     newTodo.classList.add('todo-item');            // Adds a CSS class
     todoDiv.appendChild(newTodo);                  // Appends the li element as a child to a div (No appendChile will only in mem not display)
+    //ADD TODO TO LOCALSTORAGE
+    saveLocalTodos(todoInput.value);
     //Check Mark button
     const completedButton = document.createElement('button');       // Create a new "button" element
     completedButton.innerHTML = '<i class="fas fa-check"></i>';     // Given an inner HTML of an icon represented by the <i> tag with a class of "fas fa-check" (check mark).
@@ -49,6 +52,7 @@ function deleteCheck(e){
         const todo = item.parentElement;                        //  Returns the parent element(the container)
         //Animation
         todo.classList.add("fall");
+        removeLocalTodos(todo);
         todo.addEventListener('transitionend', function(){      // The transitionend event is fired when a CSS transition or animation ends on an element. 
             todo.remove();
         })
@@ -87,3 +91,63 @@ function filterTodo(e){
         }
     });
 }
+
+function saveLocalTodos(todo){
+    //CHECK---If I already have thing in there?
+    let todos;
+    if(localStorage.getItem("todos")===null){
+        todos = [];
+    } else{
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+
+    todos.push(todo);
+    localStorage.setItem("todos", JSON.stringify(todos));
+
+}
+
+function getTodos(){
+    //CHECK---If I already have thing in there?
+    let todos;
+    if(localStorage.getItem("todos")===null){
+        todos = [];
+    } else{
+        todos = JSON.parse(localStorage.getItem("todos"));
+    }
+    todos.forEach(function(todo){
+    //Todo DIV
+    const todoDiv = document.createElement("div");                  // Create a new "div" element and save it into variable
+    todoDiv.classList.add("todo");                                  // Adds a CSS class "todo" to that variable
+    //Create LI
+    const newTodo = document.createElement('li');                   // Create a new "li" element
+    newTodo.innerText = todo;                                       // Sets the text content to the current value of the todoInput variable  using the innerText property.
+    newTodo.classList.add('todo-item');                             // Adds a CSS class
+    todoDiv.appendChild(newTodo);                                   // Appends the li element as a child to a div (No appendChile will only in mem not display)
+    //Check Mark button
+    const completedButton = document.createElement('button');       // Create a new "button" element
+    completedButton.innerHTML = '<i class="fas fa-check"></i>';     // Given an inner HTML of an icon represented by the <i> tag with a class of "fas fa-check" (check mark).
+    completedButton.classList.add("complete-btn");                  // Adds a CSS class
+    todoDiv.appendChild(completedButton);                           // Appends the button element as a child to a div
+    //Check trash button
+    const trashButton = document.createElement('button');           // Create a new "button" element
+    trashButton.innerHTML = '<i class="fas fa-trash"></i>';         // Given an inner HTML of an icon represented by the <i> tag with a class of "fas fa-trash" (trash mark).
+    trashButton.classList.add("trash-btn");                         // Adds a CSS class
+    todoDiv.appendChild(trashButton);                               // Appends the button element as a child to a div
+    //Append to list
+    todoList.appendChild(todoDiv);       
+    });
+}
+
+function removeLocalTodos(todo){
+     //CHECK---If I already have thing in there?
+     let todos;
+     if(localStorage.getItem("todos")===null){
+         todos = [];
+     } else{
+         todos = JSON.parse(localStorage.getItem("todos"));
+     }
+     const todoIndex = todo.children[0].innerText;
+     todos.splice(todos.indexOf(todoIndex), 1);
+     localStorage.setItem("todos", JSON.stringify(todos));
+}
+
