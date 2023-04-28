@@ -143,3 +143,17 @@ select{
     background: white;
     color: #ff6f47
 }
+
+.button_container{
+    display: flex;
+    flex-wrap: nowrap;
+    /* background-color: DodgerBlue; */
+    justify-content: center;
+}
+
+.button_container button{
+    width: 80px;
+    margin: 10px;
+    text-align: center;
+    font-size: 20px;
+}

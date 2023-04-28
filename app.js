@@ -4,8 +4,6 @@ const todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 const filterOption = document.querySelector('.filter-todo');
 
-
-
 //Event Listeners: addEventListener attach an event handler to a specified element,
 //such as a button or input field. The first paremeter is the action that tragger the
 //function. The second parameter is the function that is being traggered.
@@ -92,6 +90,8 @@ function filterTodo(e){
     });
 }
 
+//----------------------------------Save to the local---------------------------------------------//
+
 function saveLocalTodos(todo){
     //CHECK---If I already have thing in there?
     let todos;
@@ -151,3 +151,24 @@ function removeLocalTodos(todo){
      localStorage.setItem("todos", JSON.stringify(todos));
 }
 
+
+//Different action while clicking the action button
+const title = document.querySelector(".title");
+const action1 = document.querySelector(".action1");
+let colorArr = ["red", "green", "blue", "black", "white"];
+
+action1.addEventListener("click", changeTextColor);
+
+function changeTextColor(){
+    let randomNum = Math.floor(Math.random()*5);
+    while(title.style.color === colorArr[randomNum]){
+        randomNum = Math.floor(Math.random()*5);
+    }
+    title.style.color = colorArr[randomNum];
+
+    // if(title.style.color === "red"){
+    //     title.style.color = "white";
+    // }else{
+    //     title.style.color = "red";
+    // }
+}
