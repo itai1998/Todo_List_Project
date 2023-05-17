@@ -5,5 +5,8 @@ Todo_List_Project is a simple web project created by JavaScript, HTML, and CSS. 
 ### Clone this repository
 - Open the command terminal
 - Navigate to the file using these commands:
-    - **git clone** [https://github.com/byu-oit-training/whimple-technical-challenge.git](https://github.com/byu-oit-training/I-Tai-technical-challenge.git)
+    - **git clone** https://github.com/itai1998/Todo_List_Project.git
     - **cd Todo-List-Project**
+
+## Run the program
+
